@@ -28,7 +28,7 @@ public class DataService
     };
 
     readonly List<Item> items = new();
-    readonly User demo = new() { FirstName = "Thomas", LastName = "Martin", Email = "thomas.martin@univ.fr", Campus = "Campus centre" };
+    readonly User demo = new() { FirstName = "Thomas", LastName = "Martin", Email = "thomas.martin@gmail.com", Campus = "Campus III" };
     int counter = 24;
 
     public User? CurrentUser { get; private set; }
@@ -106,7 +106,7 @@ public class DataService
     void Seed()
     {
         var thomas = demo;
-        const string marie = "marie.laurent@univ.fr";
+        const string marie = "marie.laurent@gmail.com";
 
         items.Add(new Item
         {
@@ -114,7 +114,7 @@ public class DataService
             Description = "Trois clés sur un anneau, avec un porte-clés en tissu bleu. Retrouvées sur une table. L'objet est déposé à l'accueil de la bibliothèque.",
             Location = "Bibliothèque universitaire", LocationDetail = "Salle de lecture, rez-de-chaussée",
             Date = new DateTime(2026, 10, 6), Time = new TimeSpan(10, 30, 0), CurrentLocation = "À l'accueil de la bibliothèque",
-            OwnerEmail = marie, OwnerName = "Marie Laurent", OwnerRole = "Étudiante • Campus centre", IsFavorite = true
+            OwnerEmail = marie, OwnerName = "Marie Laurent", OwnerRole = "Étudiante • Campus I", IsFavorite = true
         });
         items.Add(new Item
         {
@@ -122,7 +122,7 @@ public class DataService
             Description = "Sac à dos noir avec une poche zippée à l'avant. Il contient un cahier bleu et une trousse grise.",
             Location = "Bâtiment B", LocationDetail = "Amphi 3, près du dernier rang",
             Date = new DateTime(2026, 10, 5), Time = new TimeSpan(14, 0, 0),
-            OwnerEmail = thomas.Email, OwnerName = thomas.FullName, OwnerRole = "Étudiant • Campus centre"
+            OwnerEmail = thomas.Email, OwnerName = thomas.FullName, OwnerRole = "Étudiant • Campus III"
         });
         items.Add(new Item
         {
@@ -138,14 +138,14 @@ public class DataService
             Description = "Casque Bluetooth noir, perdu au premier étage de la bibliothèque.",
             Location = "Bibliothèque", LocationDetail = "1er étage",
             Date = new DateTime(2026, 10, 4), Time = new TimeSpan(16, 0, 0),
-            OwnerEmail = "lucas.bernard@univ.fr", OwnerName = "Lucas Bernard", OwnerRole = "Étudiant • Campus centre", IsFavorite = true
+            OwnerEmail = "lucas.bernard@gmail.com", OwnerName = "Lucas Bernard", OwnerRole = "Étudiant • Campus II", IsFavorite = true
         });
         items.Add(new Item
         {
             Id = "CL019", Name = "Carte étudiante", Category = "Documents & cartes", IsLost = true, Emoji = "🪪",
             Description = "Carte étudiante.", Location = "Bâtiment A", LocationDetail = "Hall",
             Date = new DateTime(2026, 10, 2), Time = new TimeSpan(11, 0, 0),
-            OwnerEmail = thomas.Email, OwnerName = thomas.FullName, OwnerRole = "Étudiant • Campus centre",
+            OwnerEmail = thomas.Email, OwnerName = thomas.FullName, OwnerRole = "Étudiant • Campus III",
             IsResolved = true, ResolvedNote = "Rendue à son propriétaire le 3 oct."
         });
     }
