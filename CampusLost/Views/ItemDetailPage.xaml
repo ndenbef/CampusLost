@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CampusLost.Views.ItemDetailPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:CampusLost.Controls" BackgroundColor="{StaticResource Bg}" Shell.TabBarIsVisible="True" Title="Détails de l'objet">
+    <Grid RowDefinitions="Auto,*">
+        <c:AppHeader Title="Détails de l'objet"/>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,16" Spacing="16">
+
+                <Grid>
+                    <Border HeightRequest="250" BackgroundColor="#E9EEF2" Stroke="Transparent" StrokeShape="RoundRectangle 20">
+                        <Grid>
+                            <Image Source="{Binding Ad.PhotoPath}" Aspect="AspectFill" IsVisible="{Binding Ad.HasPhoto}"/>
+                            <Label Text="{Binding Ad.Emoji}" FontSize="100" IsVisible="{Binding Ad.NoPhoto}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Grid>
+                    </Border>
+                    <Border WidthRequest="48" HeightRequest="48" BackgroundColor="White" Stroke="Transparent" StrokeShape="RoundRectangle 24"
+                            HorizontalOptions="End" VerticalOptions="Start" Margin="0,12,12,0">
+                        <Label Text="{Binding Ad.HeartGlyph}" TextColor="{Binding Ad.HeartColor}" FontSize="26" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Border.GestureRecognizers><TapGestureRecognizer Command="{Binding ToggleFavoriteCommand}"/></Border.GestureRecognizers>
+                    </Border>
+                </Grid>
+
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                    <Border Style="{StaticResource Pill}" BackgroundColor="{Binding Ad.PillBg}" VerticalOptions="Center">
+                        <Label Text="{Binding Ad.BadgeText}" TextColor="{Binding Ad.PillFg}" FontFamily="OpenSansSemibold" FontSize="14"/>
+                    </Border>
+                    <Label Grid.Column="1" Text="{Binding Ad.CategoryAndId}" Style="{StaticResource Small}" HorizontalTextAlignment="End" VerticalOptions="Center"/>
+                </Grid>
+
+                <Label Text="{Binding Ad.Name}" Style="{StaticResource H1}" FontSize="32"/>
+
+                <VerticalStackLayout Spacing="16">
+                    <Grid ColumnDefinitions="36,*">
+                        <Label Text="📍" FontSize="22" VerticalOptions="Start"/>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="{Binding Ad.Location}" Style="{StaticResource Bold}" FontSize="18"/>
+                            <Label Text="{Binding Ad.LocationDetail}" Style="{StaticResource Sub}"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid ColumnDefinitions="36,*">
+                        <Label Text="📅" FontSize="22" VerticalOptions="Start"/>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="{Binding Ad.DateLine}" Style="{StaticResource Bold}" FontSize="18"/>
+                            <Label Text="{Binding Ad.TimeLine}" Style="{StaticResource Sub}"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Description" Style="{StaticResource H2}" FontSize="20"/>
+                    <Label Text="{Binding Ad.Description}" Style="{StaticResource Sub}" FontSize="16"/>
+                </VerticalStackLayout>
+
+                <Border Style="{StaticResource Card}">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Border WidthRequest="56" HeightRequest="56" BackgroundColor="{StaticResource GreenSoft}" Stroke="Transparent" StrokeShape="RoundRectangle 28">
+                            <Label Text="{Binding Ad.OwnerInitials}" TextColor="{StaticResource GreenDark}" FontFamily="OpenSansSemibold" FontSize="20"
+                                   HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                            <Label Text="{Binding Ad.OwnerName}" Style="{StaticResource Bold}" FontSize="18"/>
+                            <Label Text="{Binding Ad.OwnerRole}" Style="{StaticResource Small}"/>
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="✔" TextColor="{StaticResource Green}" FontSize="24" VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <Button Text="💬  Contacter l'annonceur" Style="{StaticResource Primary}" IsVisible="{Binding CanContact}" Command="{Binding ContactCommand}"/>
+                <Label Text="Signaler une annonce inappropriée" Style="{StaticResource Small}" HorizontalOptions="Center" Margin="0,0,0,8">
+                    <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding ReportAbuseCommand}"/></Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

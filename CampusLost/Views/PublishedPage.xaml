@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CampusLost.Views.PublishedPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:CampusLost.Controls" BackgroundColor="{StaticResource Bg}" Shell.TabBarIsVisible="True" Title="Signalement publié">
+    <Grid RowDefinitions="Auto,*">
+        <c:AppHeader Title="Signalement publié"/>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="22,26" Spacing="14">
+                <Border WidthRequest="140" HeightRequest="140" BackgroundColor="{StaticResource GreenSoft}" Stroke="Transparent" StrokeShape="RoundRectangle 70" HorizontalOptions="Center">
+                    <Border WidthRequest="100" HeightRequest="100" BackgroundColor="{StaticResource Green}" Stroke="Transparent" StrokeShape="RoundRectangle 50"
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="✓" TextColor="White" FontSize="56" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+                </Border>
+                <Label Text="Votre signalement est en ligne !" Style="{StaticResource H1}" HorizontalTextAlignment="Center" Margin="0,10,0,0"/>
+                <Label Text="{Binding Subtitle}" Style="{StaticResource Sub}" HorizontalTextAlignment="Center"/>
+
+                <c:ItemCard BindingContext="{Binding Ad}" Margin="0,8,0,0"/>
+
+                <Border Style="{StaticResource Info}">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Label Text="🔔" FontSize="20" VerticalOptions="Start"/>
+                        <Label Grid.Column="1" Text="Vous recevrez un e-mail lorsqu'un membre vous contactera. Gérez votre annonce depuis votre profil."
+                               Style="{StaticResource Sub}" FontSize="14"/>
+                    </Grid>
+                </Border>
+
+                <Button Text="→  Voir mon annonce" Style="{StaticResource Primary}" Command="{Binding ViewAdCommand}"/>
+                <Button Text="Retour à l'accueil" Style="{StaticResource Secondary}" Command="{Binding HomeCommand}"/>
+                <c:CampusBanner Margin="0,6,0,0" HeightRequest="130"/>
+                <Label Text="Merci de faire vivre l'entraide sur le campus." TextColor="{StaticResource GreenDark}" HorizontalOptions="Center" FontSize="14"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

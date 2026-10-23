@@ -1,0 +1,8 @@
+using CampusLost.ViewModels;
+
+namespace CampusLost.Views;
+
+public partial class ItemDetailPage : ContentPage
+{
+    public ItemDetailPage(ItemDetailViewModel vm) { InitializeComponent(); BindingContext = vm; }
+}

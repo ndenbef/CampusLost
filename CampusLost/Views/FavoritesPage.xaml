@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CampusLost.Views.FavoritesPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:CampusLost.Controls" BackgroundColor="{StaticResource Bg}" Title="Favoris">
+    <Grid RowDefinitions="Auto,*">
+        <c:AppHeader Title="Mes favoris"/>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,16" Spacing="14">
+                <Label Text="Vos objets à suivre" Style="{StaticResource H1}"/>
+                <Label Text="{Binding Subtitle}" Style="{StaticResource Sub}"/>
+
+                <VerticalStackLayout Spacing="12" BindableLayout.ItemsSource="{Binding Items}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate><c:ItemCard/></DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <Border Style="{StaticResource Info}">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Label Text="💙" FontSize="22" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" Text="Touchez le cœur d'une annonce pour l'ajouter ou la retirer de vos favoris." Style="{StaticResource Sub}" FontSize="15"/>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource Soft}" Padding="18">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Vous cherchez encore votre objet ?" Style="{StaticResource Bold}" FontSize="18"/>
+                        <Label Text="De nouvelles annonces sont publiées chaque jour sur le campus." TextColor="{StaticResource GreenDark}" FontSize="15"/>
+                        <Label Text="Voir tous les objets →" TextColor="{StaticResource GreenDark}" FontFamily="OpenSansSemibold" FontSize="16">
+                            <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding SeeAllCommand}"/></Label.GestureRecognizers>
+                        </Label>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CampusLost.Views.AboutPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:CampusLost.Controls" BackgroundColor="{StaticResource Bg}" Shell.TabBarIsVisible="True" Title="À propos / Fonctionnement">
+    <Grid RowDefinitions="Auto,*">
+        <c:AppHeader Title="À propos / Fonctionnement"/>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,16" Spacing="18">
+
+                <Grid>
+                    <c:CampusBanner HeightRequest="190"/>
+                    <Border BackgroundColor="#CCFFFFFF" Stroke="Transparent" StrokeShape="RoundRectangle 14" Padding="26,8"
+                            HorizontalOptions="Center" VerticalOptions="Start" Margin="0,14,0,0">
+                        <VerticalStackLayout>
+                            <Label Text="CampusLost" FontFamily="OpenSansSemibold" FontSize="34" TextColor="{StaticResource GreenDark}" HorizontalOptions="Center"/>
+                            <Label Text="Le campus, plus solidaire." FontSize="14" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <Label Text="Comment ça marche ?" Style="{StaticResource H2}"/>
+
+                <Grid ColumnDefinitions="56,*" ColumnSpacing="12">
+                    <Border WidthRequest="48" HeightRequest="48" BackgroundColor="{StaticResource Green}" Stroke="Transparent" StrokeShape="RoundRectangle 24" VerticalOptions="Start"><Label Text="🔍" FontSize="22" HorizontalOptions="Center" VerticalOptions="Center"/></Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2"><Label Text="1. Signalez un objet perdu" Style="{StaticResource Bold}" FontSize="18"/><Label Text="Décrivez l'objet, précisez le lieu et ajoutez une photo pour aider à le retrouver." Style="{StaticResource Sub}" FontSize="14"/></VerticalStackLayout>
+                </Grid>
+                <Grid ColumnDefinitions="56,*" ColumnSpacing="12">
+                    <Border WidthRequest="48" HeightRequest="48" BackgroundColor="{StaticResource Green}" Stroke="Transparent" StrokeShape="RoundRectangle 24" VerticalOptions="Start"><Label Text="📦" FontSize="22" HorizontalOptions="Center" VerticalOptions="Center"/></Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2"><Label Text="2. Déclarez un objet trouvé" Style="{StaticResource Bold}" FontSize="18"/><Label Text="Publiez ce que vous avez trouvé. Son propriétaire pourra vous contacter." Style="{StaticResource Sub}" FontSize="14"/></VerticalStackLayout>
+                </Grid>
+                <Grid ColumnDefinitions="56,*" ColumnSpacing="12">
+                    <Border WidthRequest="48" HeightRequest="48" BackgroundColor="{StaticResource Green}" Stroke="Transparent" StrokeShape="RoundRectangle 24" VerticalOptions="Start"><Label Text="💬" FontSize="22" HorizontalOptions="Center" VerticalOptions="Center"/></Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2"><Label Text="3. Échangez en toute confiance" Style="{StaticResource Bold}" FontSize="18"/><Label Text="Utilisez la messagerie pour vérifier les détails et convenir d'un rendez-vous." Style="{StaticResource Sub}" FontSize="14"/></VerticalStackLayout>
+                </Grid>
+                <Grid ColumnDefinitions="56,*" ColumnSpacing="12">
+                    <Border WidthRequest="48" HeightRequest="48" BackgroundColor="{StaticResource Green}" Stroke="Transparent" StrokeShape="RoundRectangle 24" VerticalOptions="Start"><Label Text="💚" FontSize="22" HorizontalOptions="Center" VerticalOptions="Center"/></Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="2"><Label Text="4. Rendez l'objet et clôturez" Style="{StaticResource Bold}" FontSize="18"/><Label Text="Remettez l'objet sur le campus puis marquez l'annonce comme résolue." Style="{StaticResource Sub}" FontSize="14"/></VerticalStackLayout>
+                </Grid>
+
+                <Border Style="{StaticResource Soft}" Padding="18" Stroke="{StaticResource GreenSoft}">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14">
+                        <Label Text="🎓" FontSize="30" VerticalOptions="Start"/>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Une application responsable" Style="{StaticResource Bold}" FontSize="18"/>
+                            <Label Text="Gratuite et pensée pour la communauté étudiante. Ensemble, donnons une seconde chance aux objets égarés." TextColor="{StaticResource GreenDark}" FontSize="14"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+                <Label Text="CampusLost • Fait pour les étudiants, avec les étudiants" Style="{StaticResource Small}" HorizontalTextAlignment="Center" Margin="0,0,0,8"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

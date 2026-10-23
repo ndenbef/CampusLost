@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="CampusLost.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:CampusLost.Views"
+       FlyoutBehavior="Disabled"
+       Shell.NavBarIsVisible="False"
+       Shell.BackgroundColor="White"
+       Shell.TabBarBackgroundColor="White"
+       Shell.TabBarForegroundColor="{StaticResource Green}"
+       Shell.TabBarTitleColor="{StaticResource Green}"
+       Shell.TabBarUnselectedColor="{StaticResource Muted}">
+
+    <ShellContent Route="login" ContentTemplate="{DataTemplate views:LoginPage}"/>
+
+    <TabBar Route="main">
+        <Tab Title="Accueil" Route="home">
+            <Tab.Icon><FontImageSource Glyph="🏠" Size="22"/></Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:HomePage}"/>
+        </Tab>
+        <Tab Title="Objets" Route="objects">
+            <Tab.Icon><FontImageSource Glyph="🔍" Size="22"/></Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:ObjectsPage}"/>
+        </Tab>
+        <Tab Title="Favoris" Route="favorites">
+            <Tab.Icon><FontImageSource Glyph="🤍" Size="22"/></Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:FavoritesPage}"/>
+        </Tab>
+        <Tab Title="Profil" Route="profile">
+            <Tab.Icon><FontImageSource Glyph="👤" Size="22"/></Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}"/>
+        </Tab>
+    </TabBar>
+</Shell>

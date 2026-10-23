@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CampusLost.Views.ProfilePage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:CampusLost.Controls" BackgroundColor="{StaticResource Bg}" Title="Profil">
+    <Grid RowDefinitions="Auto,*">
+        <c:AppHeader Title="Mon profil"/>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,16" Spacing="16">
+
+                <Border Style="{StaticResource Card}" Padding="18">
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" ColumnSpacing="16" RowSpacing="8">
+                        <Border WidthRequest="80" HeightRequest="80" BackgroundColor="#9AAEBD" Stroke="Transparent" StrokeShape="RoundRectangle 40">
+                            <Label Text="👤" FontSize="36" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                            <Label Text="{Binding FullName}" TextTransform="Uppercase" Style="{StaticResource H2}" FontSize="22"/>
+                            <Label Text="{Binding Email}" Style="{StaticResource Sub}" FontSize="14"/>
+                            <Label Text="{Binding RoleLine}" TextColor="{StaticResource Blue}" FontSize="14"/>
+                        </VerticalStackLayout>
+                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="Modifier mon profil" TextColor="{StaticResource Green}"
+                               FontFamily="OpenSansSemibold" HorizontalOptions="End">
+                            <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding EditProfileCommand}"/></Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource Soft}" Padding="12,16">
+                    <Grid ColumnDefinitions="*,*,*">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding AdsCount}" TextColor="{StaticResource GreenDark}" FontFamily="OpenSansSemibold" FontSize="30" HorizontalOptions="Center"/>
+                            <Label Text="Annonces" TextColor="{StaticResource GreenDark}" FontSize="14" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="{Binding FavCount}" TextColor="{StaticResource GreenDark}" FontFamily="OpenSansSemibold" FontSize="30" HorizontalOptions="Center"/>
+                            <Label Text="Favoris" TextColor="{StaticResource GreenDark}" FontSize="14" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="2">
+                            <Label Text="{Binding ReturnedCount}" TextColor="{StaticResource GreenDark}" FontFamily="OpenSansSemibold" FontSize="30" HorizontalOptions="Center"/>
+                            <Label Text="Objet rendu" TextColor="{StaticResource GreenDark}" FontSize="14" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Padding="0">
+                    <VerticalStackLayout>
+                        <Grid ColumnDefinitions="44,*,Auto" Padding="18,16" ColumnSpacing="6">
+                            <Label Text="📣" FontSize="22" VerticalOptions="Center"/>
+                            <VerticalStackLayout Grid.Column="1"><Label Text="Mes annonces" Style="{StaticResource Bold}" FontSize="18"/><Label Text="Gérer mes signalements" Style="{StaticResource Small}"/></VerticalStackLayout>
+                            <Label Grid.Column="2" Text="›" FontSize="26" TextColor="{StaticResource Muted}" VerticalOptions="Center"/>
+                            <Grid.GestureRecognizers><TapGestureRecognizer Command="{Binding GoCommand}" CommandParameter="myads"/></Grid.GestureRecognizers>
+                        </Grid>
+                        <Grid ColumnDefinitions="44,*,Auto" Padding="18,16" ColumnSpacing="6">
+                            <Label Text="💙" FontSize="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Mes favoris" Style="{StaticResource Bold}" FontSize="18" VerticalOptions="Center"/>
+                            <Label Grid.Column="2" Text="›" FontSize="26" TextColor="{StaticResource Muted}" VerticalOptions="Center"/>
+                            <Grid.GestureRecognizers><TapGestureRecognizer Command="{Binding GoCommand}" CommandParameter="//main/favorites"/></Grid.GestureRecognizers>
+                        </Grid>
+                        <Grid ColumnDefinitions="44,*,Auto" Padding="18,16" ColumnSpacing="6">
+                            <Label Text="⚙️" FontSize="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Paramètres" Style="{StaticResource Bold}" FontSize="18" VerticalOptions="Center"/>
+                            <Label Grid.Column="2" Text="›" FontSize="26" TextColor="{StaticResource Muted}" VerticalOptions="Center"/>
+                            <Grid.GestureRecognizers><TapGestureRecognizer Command="{Binding GoCommand}" CommandParameter="settings"/></Grid.GestureRecognizers>
+                        </Grid>
+                        <Grid ColumnDefinitions="44,*,Auto" Padding="18,16" ColumnSpacing="6">
+                            <Label Text="❓" FontSize="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Aide &amp; FAQ" Style="{StaticResource Bold}" FontSize="18" VerticalOptions="Center"/>
+                            <Label Grid.Column="2" Text="›" FontSize="26" TextColor="{StaticResource Muted}" VerticalOptions="Center"/>
+                            <Grid.GestureRecognizers><TapGestureRecognizer Command="{Binding GoCommand}" CommandParameter="help"/></Grid.GestureRecognizers>
+                        </Grid>
+                        <Grid ColumnDefinitions="44,*,Auto" Padding="18,16" ColumnSpacing="6">
+                            <Label Text="ℹ️" FontSize="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="À propos / Fonctionnement" Style="{StaticResource Bold}" FontSize="18" VerticalOptions="Center"/>
+                            <Label Grid.Column="2" Text="›" FontSize="26" TextColor="{StaticResource Muted}" VerticalOptions="Center"/>
+                            <Grid.GestureRecognizers><TapGestureRecognizer Command="{Binding GoCommand}" CommandParameter="about"/></Grid.GestureRecognizers>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button Text="↪  Se déconnecter" Style="{StaticResource Outline}" Command="{Binding SignOutCommand}"/>
+                <Label Text="CampusLost • Version 1.0" Style="{StaticResource Small}" HorizontalOptions="Center" Margin="0,0,0,8"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

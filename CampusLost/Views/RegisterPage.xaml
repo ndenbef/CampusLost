@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CampusLost.Views.RegisterPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:CampusLost.Controls" BackgroundColor="{StaticResource Bg}" Title="Créer un compte">
+    <Grid RowDefinitions="Auto,*">
+        <c:AppHeader Title="Créer un compte" ShowMenu="False"/>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="22,20" Spacing="4">
+                <Border WidthRequest="64" HeightRequest="64" BackgroundColor="{StaticResource Green}" Stroke="Transparent"
+                        StrokeShape="RoundRectangle 32" HorizontalOptions="Center">
+                    <Label Text="🎒" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Border>
+                <Label Text="Rejoignez votre campus" Style="{StaticResource H1}" HorizontalOptions="Center" Margin="0,12,0,0"/>
+                <Label Text="Un compte gratuit pour retrouver, partager et s'entraider." Style="{StaticResource Sub}" HorizontalTextAlignment="Center"/>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <VerticalStackLayout>
+                        <Label Text="Prénom *" Style="{StaticResource FieldLabel}"/>
+                        <Border Style="{StaticResource Field}"><Entry Text="{Binding FirstName}" Style="{StaticResource Input}"/></Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="Nom *" Style="{StaticResource FieldLabel}"/>
+                        <Border Style="{StaticResource Field}"><Entry Text="{Binding LastName}" Style="{StaticResource Input}"/></Border>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Label Text="Adresse e-mail universitaire *" Style="{StaticResource FieldLabel}"/>
+                <Border Style="{StaticResource Field}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="prenom.nom@univ.fr" Style="{StaticResource Input}"/>
+                        <Label Grid.Column="1" Text="✉" FontSize="18" TextColor="{StaticResource Muted}" VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <Label Text="Campus *" Style="{StaticResource FieldLabel}"/>
+                <Border Style="{StaticResource Field}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Picker ItemsSource="{Binding Campuses}" SelectedItem="{Binding Campus}" Style="{StaticResource PickerInput}"/>
+                        <Label Grid.Column="1" Text="⌄" FontSize="20" TextColor="{StaticResource Muted}" VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <Label Text="Mot de passe *" Style="{StaticResource FieldLabel}"/>
+                <Border Style="{StaticResource Field}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Entry Text="{Binding Password}" IsPassword="{Binding HidePassword}" Style="{StaticResource Input}"/>
+                        <Label Grid.Column="1" Text="{Binding PasswordGlyph}" FontSize="18" VerticalOptions="Center">
+                            <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding TogglePasswordCommand}"/></Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Border>
+                <Label Text="8 caractères minimum, une lettre et un chiffre." Style="{StaticResource Small}"/>
+
+                <Label Text="Confirmer le mot de passe *" Style="{StaticResource FieldLabel}"/>
+                <Border Style="{StaticResource Field}"><Entry Text="{Binding Confirm}" IsPassword="{Binding HidePassword}" Style="{StaticResource Input}"/></Border>
+
+                <HorizontalStackLayout Spacing="8" Margin="0,14,0,10">
+                    <CheckBox IsChecked="{Binding Accepted}" Color="{StaticResource Green}" VerticalOptions="Start"/>
+                    <Label Text="J'accepte les conditions d'utilisation et la politique de confidentialité de CampusLost."
+                           Style="{StaticResource Sub}" FontSize="14" WidthRequest="290" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
+                <Label Text="{Binding Error}" IsVisible="{Binding HasError}" Style="{StaticResource ErrorText}"/>
+                <Button Text="Créer mon compte" Style="{StaticResource Primary}" Command="{Binding CreateAccountCommand}"/>
+                <Label Text="Déjà inscrit ? Se connecter" TextColor="{StaticResource Blue}" FontFamily="OpenSansSemibold"
+                       HorizontalOptions="Center" Margin="0,14,0,0">
+                    <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding BackToLoginCommand}"/></Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

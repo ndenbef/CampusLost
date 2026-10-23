@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CampusLost.Views.ObjectsPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:CampusLost.Controls" BackgroundColor="{StaticResource Bg}" Title="Objets">
+    <Grid RowDefinitions="Auto,*">
+        <c:AppHeader Title="Objets disponibles"/>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,16" Spacing="14">
+                <Label Text="Rechercher sur le campus" Style="{StaticResource Bold}"/>
+                <Border Style="{StaticResource Field}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Entry Text="{Binding Query}" Placeholder="Nom de l'objet, lieu…" Style="{StaticResource Input}"/>
+                        <Label Grid.Column="1" Text="🔍" FontSize="18" VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                    <Button Text="Tous" Style="{StaticResource Chip}" Command="{Binding SetFilterCommand}" CommandParameter="all">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding Filter}" Value="all">
+                                <Setter Property="BackgroundColor" Value="{StaticResource Green}"/>
+                                <Setter Property="TextColor" Value="White"/>
+                                <Setter Property="BorderColor" Value="{StaticResource Green}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Grid.Column="1" Text="Perdus" Style="{StaticResource Chip}" Command="{Binding SetFilterCommand}" CommandParameter="lost">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding Filter}" Value="lost">
+                                <Setter Property="BackgroundColor" Value="{StaticResource Green}"/>
+                                <Setter Property="TextColor" Value="White"/>
+                                <Setter Property="BorderColor" Value="{StaticResource Green}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Grid.Column="2" Text="Trouvés" Style="{StaticResource Chip}" Command="{Binding SetFilterCommand}" CommandParameter="found">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding Filter}" Value="found">
+                                <Setter Property="BackgroundColor" Value="{StaticResource Green}"/>
+                                <Setter Property="TextColor" Value="White"/>
+                                <Setter Property="BorderColor" Value="{StaticResource Green}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </Grid>
+
+                <Border Style="{StaticResource Field}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Picker ItemsSource="{Binding Categories}" SelectedItem="{Binding Category}" Style="{StaticResource PickerInput}"/>
+                        <Label Grid.Column="1" Text="⌄" FontSize="20" TextColor="{StaticResource Muted}" VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                    <Label Text="{Binding CountText}" Style="{StaticResource Bold}" FontSize="15" VerticalOptions="Center"/>
+                    <HorizontalStackLayout Grid.Column="1" Spacing="6">
+                        <Label Text="{Binding SortText}" TextColor="{StaticResource Blue}" FontSize="15" VerticalOptions="Center"/>
+                        <Label Text="⇅" TextColor="{StaticResource Blue}" FontSize="18" VerticalOptions="Center"/>
+                        <HorizontalStackLayout.GestureRecognizers><TapGestureRecognizer Command="{Binding ToggleSortCommand}"/></HorizontalStackLayout.GestureRecognizers>
+                    </HorizontalStackLayout>
+                </Grid>
+
+                <VerticalStackLayout Spacing="12" BindableLayout.ItemsSource="{Binding Items}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate><c:ItemCard/></DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <Label Text="Voir plus d'objets ↓" IsVisible="{Binding CanShowMore}" TextColor="{StaticResource Green}"
+                       FontFamily="OpenSansSemibold" HorizontalOptions="Center" Margin="0,4,0,8">
+                    <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding ShowMoreCommand}"/></Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

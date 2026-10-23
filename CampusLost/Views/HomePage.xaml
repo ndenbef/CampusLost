@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CampusLost.Views.HomePage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:CampusLost.Controls" BackgroundColor="{StaticResource Bg}" Title="Accueil">
+    <Grid RowDefinitions="Auto,*">
+        <Grid RowDefinitions="60,1" BackgroundColor="White">
+            <Grid ColumnDefinitions="60,*,60">
+                <Label Text="🎓" FontSize="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="1" Text="Accueil" Style="{StaticResource Bold}" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="2" Text="🔔" FontSize="22" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding NotificationsCommand}"/></Label.GestureRecognizers>
+                </Label>
+            </Grid>
+            <BoxView Grid.Row="1" Color="{StaticResource Line}"/>
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,16" Spacing="20">
+
+                <!-- Héros -->
+                <Border Style="{StaticResource Card}" Padding="0" StrokeShape="RoundRectangle 20">
+                    <VerticalStackLayout>
+                        <VerticalStackLayout Padding="20,22,20,14" Spacing="6">
+                            <Border WidthRequest="76" HeightRequest="76" BackgroundColor="{StaticResource Green}" Stroke="Transparent"
+                                    StrokeShape="RoundRectangle 38" HorizontalOptions="Center">
+                                <Label Text="🎒" FontSize="36" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Border>
+                            <Label Text="CampusLost" FontFamily="OpenSansSemibold" FontSize="40" TextColor="{StaticResource GreenDark}" HorizontalOptions="Center"/>
+                            <Label Text="Retrouvez vos objets perdus sur le campus" Style="{StaticResource Sub}" HorizontalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+                        <c:CampusBanner HeightRequest="150"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Boutons d'action -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+                    <Border BackgroundColor="{StaticResource Green}" Stroke="Transparent" StrokeShape="RoundRectangle 16" Padding="12,22">
+                        <Border.GestureRecognizers><TapGestureRecognizer Command="{Binding ReportLostCommand}"/></Border.GestureRecognizers>
+                        <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                            <Label Text="🔍" FontSize="30" HorizontalOptions="Center"/>
+                            <Label Text="Objet perdu" TextColor="White" FontFamily="OpenSansSemibold" FontSize="20" HorizontalOptions="Center"/>
+                            <Label Text="Vous avez perdu un objet ?" TextColor="White" FontSize="13" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Column="1" BackgroundColor="{StaticResource Blue}" Stroke="Transparent" StrokeShape="RoundRectangle 16" Padding="12,22">
+                        <Border.GestureRecognizers><TapGestureRecognizer Command="{Binding ReportFoundCommand}"/></Border.GestureRecognizers>
+                        <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                            <Label Text="📦" FontSize="30" HorizontalOptions="Center"/>
+                            <Label Text="Objet trouvé" TextColor="White" FontFamily="OpenSansSemibold" FontSize="20" HorizontalOptions="Center"/>
+                            <Label Text="Vous avez trouvé un objet ?" TextColor="White" FontSize="13" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- Recherche -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Rechercher un objet" Style="{StaticResource Bold}" FontSize="18"/>
+                    <Border Style="{StaticResource Field}">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Entry Text="{Binding Search}" Placeholder="Nom de l'objet, lieu, catégorie…" ReturnType="Search"
+                                   ReturnCommand="{Binding DoSearchCommand}" Style="{StaticResource Input}"/>
+                            <Label Grid.Column="1" Text="🔍" FontSize="18" VerticalOptions="Center">
+                                <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding DoSearchCommand}"/></Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Mes annonces -->
+                <VerticalStackLayout Spacing="12" IsVisible="{Binding HasAd}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Mes annonces" Style="{StaticResource H2}"/>
+                        <Label Grid.Column="1" Text="Voir tout →" TextColor="{StaticResource Green}" FontFamily="OpenSansSemibold" VerticalOptions="Center">
+                            <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding SeeAllCommand}"/></Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    <c:ItemCard BindingContext="{Binding FirstAd}"/>
+                </VerticalStackLayout>
+
+                <Border Style="{StaticResource Soft}">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Label Text="💚" FontSize="22" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" Text="Un objet retrouvé, un campus solidaire. Merci de faire partie de l'aventure !"
+                               TextColor="{StaticResource GreenDark}" FontSize="15"/>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

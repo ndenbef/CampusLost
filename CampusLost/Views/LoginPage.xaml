@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CampusLost.Views.LoginPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:CampusLost.Controls" BackgroundColor="{StaticResource Bg}" Title="Connexion">
+    <Grid RowDefinitions="Auto,*">
+        <c:AppHeader Title="Connexion" ShowBack="False" ShowMenu="False"/>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="22,28" Spacing="4">
+                <Border WidthRequest="84" HeightRequest="84" BackgroundColor="{StaticResource Green}" Stroke="Transparent"
+                        StrokeShape="RoundRectangle 42" HorizontalOptions="Center">
+                    <Label Text="🎒" FontSize="40" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Border>
+                <Label Text="CampusLost" FontFamily="OpenSansSemibold" FontSize="38" TextColor="{StaticResource GreenDark}" HorizontalOptions="Center"/>
+                <Label Text="Heureux de vous retrouver !" Style="{StaticResource H2}" HorizontalOptions="Center" Margin="0,20,0,0"/>
+                <Label Text="Connectez-vous pour retrouver vos objets et aider la communauté du campus."
+                       Style="{StaticResource Sub}" HorizontalTextAlignment="Center" Margin="0,4,0,8"/>
+
+                <Label Text="Adresse e-mail universitaire" Style="{StaticResource FieldLabel}"/>
+                <Border Style="{StaticResource Field}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="prenom.nom@univ.fr" Style="{StaticResource Input}"/>
+                        <Label Grid.Column="1" Text="✉" FontSize="18" TextColor="{StaticResource Muted}" VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+
+                <Label Text="Mot de passe" Style="{StaticResource FieldLabel}"/>
+                <Border Style="{StaticResource Field}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Entry Text="{Binding Password}" IsPassword="{Binding HidePassword}" Placeholder="Votre mot de passe" Style="{StaticResource Input}"/>
+                        <Label Grid.Column="1" Text="{Binding PasswordGlyph}" FontSize="18" VerticalOptions="Center">
+                            <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding TogglePasswordCommand}"/></Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Border>
+
+                <Label Text="Mot de passe oublié ?" TextColor="{StaticResource Blue}" FontFamily="OpenSansSemibold" HorizontalOptions="End" Margin="0,8,0,8">
+                    <Label.GestureRecognizers><TapGestureRecognizer Command="{Binding ForgotCommand}"/></Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="{Binding Error}" IsVisible="{Binding HasError}" Style="{StaticResource ErrorText}"/>
+                <Button Text="Se connecter" Style="{StaticResource Primary}" Command="{Binding SignInCommand}"/>
+
+                <Label Text="Pas encore de compte ?" Style="{StaticResource Sub}" HorizontalOptions="Center" Margin="0,18,0,6"/>
+                <Button Text="Créer un compte" Style="{StaticResource Secondary}" Command="{Binding CreateAccountCommand}"/>
+
+                <Border Style="{StaticResource Info}" Margin="0,18,0,0">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Label Text="🛡" FontSize="20"/>
+                        <Label Grid.Column="1" Text="Votre adresse universitaire nous aide à garder une communauté de confiance." Style="{StaticResource Sub}" FontSize="14"/>
+                    </Grid>
+                </Border>
+                <c:CampusBanner Margin="0,16,0,0"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

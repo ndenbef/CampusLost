@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CampusLost.Views.MyAdsPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:CampusLost.Controls" BackgroundColor="{StaticResource Bg}" Shell.TabBarIsVisible="True" Title="Mes annonces">
+    <Grid RowDefinitions="Auto,*">
+        <c:AppHeader Title="Mes annonces"/>
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,16" Spacing="14">
+                <Label Text="Retrouvez et gérez tous vos signalements depuis un seul endroit." Style="{StaticResource Sub}" FontSize="16"/>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <Button Text="{Binding ActiveTabText}" Style="{StaticResource Chip}" Command="{Binding SetTabCommand}" CommandParameter="active">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding Tab}" Value="active">
+                                <Setter Property="BackgroundColor" Value="{StaticResource Green}"/>
+                                <Setter Property="TextColor" Value="White"/>
+                                <Setter Property="BorderColor" Value="{StaticResource Green}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Grid.Column="1" Text="{Binding ResolvedTabText}" Style="{StaticResource Chip}" Command="{Binding SetTabCommand}" CommandParameter="resolved">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding Tab}" Value="resolved">
+                                <Setter Property="BackgroundColor" Value="{StaticResource Green}"/>
+                                <Setter Property="TextColor" Value="White"/>
+                                <Setter Property="BorderColor" Value="{StaticResource Green}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </Grid>
+
+                <!-- En cours -->
+                <VerticalStackLayout Spacing="12" IsVisible="{Binding ShowActive}" BindableLayout.ItemsSource="{Binding Active}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource Card}">
+                                <VerticalStackLayout Spacing="10">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                                        <c:Thumb Size="84"/>
+                                        <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                                            <Label Text="{Binding Name}" Style="{StaticResource Bold}" FontSize="18"/>
+                                            <Border Style="{StaticResource Pill}" BackgroundColor="{Binding PillBg}">
+                                                <Label Text="{Binding StatusText}" TextColor="{Binding PillFg}" FontFamily="OpenSansSemibold" FontSize="13"/>
+                                            </Border>
+                                            <Label Text="{Binding Where}" Style="{StaticResource Small}"/>
+                                            <Label Text="{Binding DateShort}" Style="{StaticResource Small}"/>
+                                        </VerticalStackLayout>
+                                        <Label Grid.Column="2" Text="{Binding HeartGlyph}" TextColor="{Binding HeartColor}" FontSize="26" VerticalOptions="Start"/>
+                                    </Grid>
+                                    <BoxView HeightRequest="1" Color="{StaticResource Line}"/>
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Text="Modifier l'annonce" TextColor="{StaticResource Blue}" FontFamily="OpenSansSemibold" Padding="0,4">
+                                            <Label.GestureRecognizers><TapGestureRecognizer Tapped="OnEditTapped"/></Label.GestureRecognizers>
+                                        </Label>
+                                        <Label Grid.Column="1" Text="Marquer comme résolu" TextColor="{StaticResource Green}" FontFamily="OpenSansSemibold" Padding="0,4">
+                                            <Label.GestureRecognizers><TapGestureRecognizer Tapped="OnResolveTapped"/></Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <!-- Résolues -->
+                <VerticalStackLayout Spacing="12" IsVisible="{Binding ShowResolved}" BindableLayout.ItemsSource="{Binding Resolved}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource Card}">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14">
+                                    <Border WidthRequest="72" HeightRequest="72" BackgroundColor="{StaticResource BlueSoft}" Stroke="Transparent" StrokeShape="RoundRectangle 12" VerticalOptions="Start">
+                                        <Label Text="{Binding Emoji}" FontSize="32" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    </Border>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                                        <Label Text="{Binding Name}" Style="{StaticResource Bold}" FontSize="18"/>
+                                        <Label Text="{Binding ResolvedNote}" Style="{StaticResource Sub}" FontSize="14"/>
+                                        <Border Style="{StaticResource Pill}" BackgroundColor="{StaticResource GreenSoft}">
+                                            <Label Text="{Binding ResolvedBadge}" TextColor="{StaticResource GreenDark}" FontFamily="OpenSansSemibold" FontSize="13"/>
+                                        </Border>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <Button Text="+  Créer un signalement" Style="{StaticResource Primary}" Command="{Binding CreateCommand}" Margin="0,6,0,0"/>
+                <Label Text="Pensez à clôturer votre annonce lorsque l'objet a retrouvé son propriétaire." Style="{StaticResource Sub}"
+                       HorizontalTextAlignment="Center" FontSize="14" Margin="0,0,0,8"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
