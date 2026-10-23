@@ -14,7 +14,7 @@ Ouvrir le dossier, installer « C# Dev Kit » + « .NET MAUI », puis :
 (ou `-f net8.0-windows10.0.19041.0` sous Windows).
 
 ## Compte de démonstration
-`thomas.martin@univ.fr` + n'importe quel mot de passe → charge les annonces de la maquette.
+`thomas.martin@gmail.com` + n'importe quel mot de passe → charge les annonces de la maquette.
 Tout autre e-mail valide ouvre une session vide.
 
 ## Points à brancher plus tard
